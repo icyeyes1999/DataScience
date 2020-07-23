@@ -8,6 +8,14 @@ index_song=1
 num_song=0
 actual_num_song=[]
 
+#新增ma3曲线
+ma3=[]
+x_line_ma3=[]
+
+#新增ma5曲线
+ma5=[]
+x_line_ma5=[]
+
 # 一共多少天的数据 图像即总天数-1
 with open("test_data_modification.json", "r", encoding='UTF-8') as f:
     temp = json.loads(f.read())
@@ -16,7 +24,12 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
         average_line.append(0.0)
     for i in range(1,len(list_ex)):
         x_line.append(i)
-
+    for i in range(3,len(list_ex)):
+        ma3.append(0.0)
+        x_line_ma3.append(i)
+    for i in range(5, len(list_ex)):
+        ma5.append(0.0)
+        x_line_ma5.append(i)
     # 计算song总数
     for i in temp.keys():
         if(len(temp[i])<10):
@@ -69,11 +82,14 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
             average_line[j-1]=average_line[j-1]+(num1[1]-num2[1])
         for k in range(0,len(y)):
             x.append(k+1)
-        plt.plot(x, y, 's-', color='r', label="song "+str(index_song))  # s-:方形
+
+        #  每首歌的热度曲线
+        # plt.plot(x, y, 's-', color='r', label="song "+str(index_song))  # s-:方形
         index_song=index_song+1
-        plt.xlabel("time")  # 横坐标名字
-        plt.ylabel("addHot")  # 纵坐标名字
-        plt.legend(loc="best")  # 图例
+        # plt.xlabel("time")  # 横坐标名字
+        # plt.ylabel("addHot")  # 纵坐标名字
+        # plt.legend(loc="best")  # 图例
+
         # plt.savefig('image2/'+i+'.png')
         # plt.close()
 
@@ -82,6 +98,13 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
             for k in range(0,len(average_line)):
                 average_line[k]=average_line[k]/index_song
             plt.plot(x_line, average_line, 's-', color='b', label="average")  # s
+
+    for i in range(3,len(list_ex)):
+        ma3[i-3]=(average_line[i-3]+average_line[i-2]+average_line[i-1])/3
+    plt.plot(x_line_ma3,ma3,'s-',color='green',label='ma3')
+    for i in range(5,len(list_ex)):
+        ma5[i-5]=(average_line[i-5]+average_line[i-4]+average_line[i-3]+average_line[i-2]+average_line[i-1])/5
+    plt.plot(x_line_ma5,ma5,'s-',color='pink',label='ma3')
 
     plt.show()
         #plt.savefig('image1/《微微》.pdf')
