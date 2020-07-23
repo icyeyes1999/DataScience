@@ -1,9 +1,6 @@
 #python 实现时间序列(趋势型序列预测)
 #三种拟合曲线，一次、二次和三次
 import json
-from xlutils.copy import copy
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import xlrd
@@ -67,14 +64,12 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
         if(len(temp[i])<10):
             continue
         numlist = temp[i]
-        index = 1
-        for j in numlist:
-            num = list(map(float,j.split()))
-            #print(num)
-            #x.append(num[0]*100)
-            x.append(index)
-            index = index + 1
-            y.append(num[1])
+        for j in range(1, len(numlist)):
+            num1 = list(map(float, numlist[j].split()))
+            num2 = list(map(float, numlist[j - 1].split()))
+            y.append(num1[1] - num2[1])
+        for k in range(0, len(y)):
+            x.append(k + 1)
         #一次
         x_ = np.array(x).reshape(-1,1)
         y_ = np.array(y)
