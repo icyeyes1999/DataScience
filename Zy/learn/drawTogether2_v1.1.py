@@ -104,7 +104,7 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
     plt.plot(x_line_ma3,ma3,'s-',color='green',label='ma3')
     for i in range(5,len(list_ex)):
         ma5[i-5]=(average_line[i-5]+average_line[i-4]+average_line[i-3]+average_line[i-2]+average_line[i-1])/5
-    plt.plot(x_line_ma5,ma5,'s-',color='pink',label='ma3')
+    plt.plot(x_line_ma5,ma5,'s-',color='pink',label='ma5')
 
     plt.show()
         #plt.savefig('image1/《微微》.pdf')
