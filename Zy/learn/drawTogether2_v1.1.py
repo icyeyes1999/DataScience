@@ -1,5 +1,10 @@
-import matplotlib.pyplot as plt
 import json
+import matplotlib.pyplot as plt
+
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文字体
+plt.rcParams['axes.unicode_minus'] = False    # 显示负
+
 #折线图
 list_ex=[6.16,6.17,6.18,6.19,6.20,6.21,6.22,6.23,6.24,6.25,6.26,6.27,6.28,6.29,6.30,7.1,7.2,7.3,7.4,7.5]
 average_line=[]
@@ -99,15 +104,36 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
                 average_line[k]=average_line[k]/index_song
             plt.plot(x_line, average_line, 's-', color='b', label="average")  # s
             plt.legend()
-
+    # ma3
     for i in range(3,len(list_ex)):
         ma3[i-3]=(average_line[i-3]+average_line[i-2]+average_line[i-1])/3
     plt.plot(x_line_ma3,ma3,'s-',color='green',label='ma3',linestyle=':')
     plt.legend()
+    # ma5
     for i in range(5,len(list_ex)):
         ma5[i-5]=(average_line[i-5]+average_line[i-4]+average_line[i-3]+average_line[i-2]+average_line[i-1])/5
     plt.plot(x_line_ma5,ma5,'s-',color='pink',label='ma5',linestyle='--')
     plt.legend()
+
+    # 均线ma20
+    sum = 0
+    for i in range(0, len(list_ex) - 1):
+        sum = sum + average_line[i]
+    sum_ave = sum / len(average_line)
+    ma20 = []
+    for i in range(0, len(list_ex) - 1):
+        ma20.append(sum_ave)
+
+    x_line_ma20_2 = []
+    ma20_2 = []
+    for i in range(0, 26):
+        x_line_ma20_2.append(i)
+        ma20_2.append(sum_ave)
+    plt.plot(x_line_ma20_2, ma20_2, 'r-', color='black', label='ma20均线')
+    plt.legend()
+    plt.xlabel("time")  # 横坐标名字
+    plt.ylabel("addHot")  # 纵坐标名字
+    plt.title("历史抖音热门音乐热度趋势")
 
     plt.show()
         #plt.savefig('image1/《微微》.pdf')
