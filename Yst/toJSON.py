@@ -5,28 +5,18 @@ import xlrd
 from collections import OrderedDict
 import json
 import codecs
-path1 = 'C:/Users/ty/Desktop/抖查查榜单数据/抖查查-抖数据查询平台'
+path1 = 'C:/Users/RIO/Desktop/抖查查榜单数据/抖查查-抖数据查询平台'
 path2 = '.xlsx'
-path3 = 'C:/Users/ty/Desktop/抖查查榜单数据/JSON/'
+path3 = 'C:/Users/RIO/Desktop/抖查查榜单数据/JSON/'
 files = [
-    '6.16',
-    '6.17',
-    '6.18',
-    '6.19',
-    '6.21',
-    '6.22',
-    '6.23',
-    '6.24',
-    '6.26',
-    '6.27',
-    '6.28',
-    '6.29',
-    '6.30',
-    '7.1',
-    '7.2',
-    '7.3',
-    '7.4',
-    '7.5'
+    '7.6',
+    '7.8',
+    '7.11',
+    '7.16',
+    '7.17',
+    '7.18',
+    '7.20',
+    '7.21'
 ]
 for i in range(len(files)):
     wb = xlrd.open_workbook(path1+files[i]+path2)
