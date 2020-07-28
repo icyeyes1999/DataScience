@@ -1,10 +1,8 @@
 import pandas as pd
 import json
-import lifelines
 from lifelines import KaplanMeierFitter
 from lifelines.utils import median_survival_times
 import matplotlib.pyplot as plt
-from lifelines import CoxPHFitter
 
 with open("test_data_KaplanMeier.json", "r", encoding='UTF-8') as f:
     temp = json.loads(f.read())

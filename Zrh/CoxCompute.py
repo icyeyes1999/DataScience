@@ -17,6 +17,17 @@ files = [
     '6.30',
     '7.1',
     '7.2',
+    '7.3',
+    '7.4',
+    '7.5',
+    '7.6',
+    '7.8',
+    '7.11',
+    '7.16',
+    '7.17',
+    '7.18',
+    '7.20',
+    '7.21',
 ]
 path2 = "file.json"
 path3 = 'C:/Users/RIO/Desktop/抖查查榜单数据/compute'
@@ -49,7 +60,7 @@ for i in range(len(files)):
                 elif(cha<0.1 and cha>0):
                     result['T'][tmp] += int(cha * 100+0.05)
                 elif(cha<0):
-                    temp1=int(files[i])
+                    temp1=int(float(files[i]))
                     result['T'][tmp]+=int((float(files[i])-temp1)*100-(result['lastDate'][tmp]-temp1)*10)
                 else:
                     result['T'][tmp]+=int(((float(files[i])-7)*10+(6.31-result['lastDate'][tmp])*100))

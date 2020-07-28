@@ -4,7 +4,7 @@ from lifelines import KaplanMeierFitter
 from lifelines.utils import median_survival_times
 import matplotlib.pyplot as plt
 
-with open("test_data_KaplanMeier2.json", "r", encoding='UTF-8') as f:
+with open("test_data_KaplanMeier4.json", "r", encoding='UTF-8') as f:
     temp = json.loads(f.read())
     df=pd.DataFrame(temp)
     # print(df)
@@ -25,16 +25,16 @@ with open("test_data_KaplanMeier2.json", "r", encoding='UTF-8') as f:
     median_confidence_interval_ = median_survival_times(kmf.confidence_interval_)
     print(median_confidence_interval_)
     groups = df['group']
-    ix = (groups == 'largeAmount')
+    ix = (groups == 'longMusic')
     
-    kmf.fit(df['T'][ix], df['E'][ix], label='largeAmount')
+    kmf.fit(df['T'][ix], df['E'][ix], label='longMusic')
     ax=kmf.survival_function_.plot(ax=ax)
     ax = kmf.plot(ax=ax)
     # plt.show()
     treatment_median_confidence_interval_ = median_survival_times(kmf.confidence_interval_)
     print("使用量基数较大的音乐存活50%对应的存活时间95%置信区间：'\n'", treatment_median_confidence_interval_, '\n')
     
-    kmf.fit(df['T'][~ix], df['E'][~ix], label='smallAmount')
+    kmf.fit(df['T'][~ix], df['E'][~ix], label='shortMusic')
     ax=kmf.survival_function_.plot(ax=ax)
     ax = kmf.plot(ax=ax)
     # plt.show()
@@ -49,4 +49,4 @@ with open("test_data_KaplanMeier2.json", "r", encoding='UTF-8') as f:
     plt.xlabel("duration")  # 横坐标名字
     plt.ylabel("remaining")  # 纵坐标名字
     plt.legend(loc="best")  # 图例
-    plt.savefig('KaplanMeier2.png')
+    plt.savefig('KaplanMeier4.png')
