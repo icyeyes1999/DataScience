@@ -33,7 +33,7 @@ with open("test_data_KaplanMeier3.json", "r", encoding='UTF-8') as f:
     ax = kmf.plot(ax=ax)
     # plt.show()
     treatment_median_confidence_interval_ = median_survival_times(kmf.confidence_interval_)
-    print("使用量基数较大的音乐存活50%对应的存活时间95%置信区间：'\n'", treatment_median_confidence_interval_, '\n')
+    print("音乐时长较长的音乐存活50%对应的存活时间95%置信区间：'\n'", treatment_median_confidence_interval_, '\n')
     
     kmf.fit(df['T'][~ix], df['E'][~ix], label='shortMusic')
     ax=kmf.survival_function_.plot(ax=ax)
@@ -41,7 +41,7 @@ with open("test_data_KaplanMeier3.json", "r", encoding='UTF-8') as f:
     # plt.show()
     
     control_median_confidence_interval_ = median_survival_times(kmf.confidence_interval_)
-    print("使用量基数较小的音乐存活50%对应的存活时间95%置信区间：'\n'", control_median_confidence_interval_)
+    print("音乐时长较短的音乐存活50%对应的存活时间95%置信区间：'\n'", control_median_confidence_interval_)
 
     plt.title('Survival function of tic toc music')
     # print(kmf1.median_survival_time_)
