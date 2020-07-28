@@ -8,6 +8,9 @@ index_song=1
 num_song=0
 actual_num_song=[]
 
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文字体
+plt.rcParams['axes.unicode_minus'] = False    # 显示负
 # 一共多少天的数据 图像即总天数-1
 with open("test_data_modification.json", "r", encoding='UTF-8') as f:
     temp = json.loads(f.read())
@@ -82,7 +85,8 @@ with open("test_data_modification.json", "r", encoding='UTF-8') as f:
             for k in range(0,len(average_line)):
                 average_line[k]=average_line[k]/index_song
             plt.plot(x_line, average_line, 's-', color='b', label="average")  # s
-
+            plt.legend()
+    plt.title("大于等于10天在榜BGM热度趋势图")
     plt.show()
         #plt.savefig('image1/《微微》.pdf')
 
